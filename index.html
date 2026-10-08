@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Animal - Alimentos, Veterinaria y Peluquería en Valdivia</title>
+    <style>
+        :root {
+            --primary: #FF6F61; /* Coral vibrante */
+            --secondary: #4ECDC4; /* Turquesa alegre */
+            --accent: #FFD166; /* Amarillo brillante */
+            --dark: #2F3E46; /* Gris oscuro para texto */
+            --light: #F7FFF7; /* Fondo claro */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Barra de Navegación */
+        header {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #3dbbb2;
+        }
+
+        /* Secciones principales */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '🐾';
+            display: block;
+            font-size: 24px;
+            margin-top: 5px;
+        }
+
+        /* Servicios Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            text-align: center;
+            border-top: 5px solid var(--secondary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #e3faf7;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin: 20px 0 10px 0;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            padding: 0 20px 20px 20px;
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* Contacto Rápido y Ubicación */
+        .contact-section {
+            background-color: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: 40px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info h3, .contact-form h3 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .info-item .icon {
+            font-size: 24px;
+        }
+
+        /* Formulario */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--secondary);
+        }
+
+        .btn-submit {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Navegación -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">🐾 Mundo Animal</a>
+            <ul class="nav-links">
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#contacto">Contacto Rápido</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>¡El paraíso para tu mejor amigo!</h1>
+        <p>Encuentra todo lo que tu mascota necesita en un solo lugar: salud, amor, estilo y la mejor nutrición en Valdivia.</p>
+        <a href="#contacto" class="btn">Reserva una Consulta Médica</a>
+    </section>
+
+    <!-- Seccion Servicios y Productos -->
+    <main class="container" id="servicios">
+        <h2 class="section-title">Nuestros Servicios y Productos</h2>
+        
+        <div class="services-grid">
+            <!-- Alimentos -->
+            <div class="service-card" style="border-top-color: #FF6F61;">
+                <img src="https://images.unsplash.com/photo-1589924691995-400dc9ebd1cc?auto=format&fit=crop&q=80&w=600" alt="Alimentos Premium" class="service-img">
+                <h3>Alimentos Premium</h3>
+                <p>Nutrición de la más alta calidad y marcas seleccionadas para que crezcan fuertes, sanos y llenos de energía vital.</p>
+            </div>
+
+            <!-- Peluquería -->
+            <div class="service-card" style="border-top-color: #4ECDC4;">
+                <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=600" alt="Peluquería Canina y Felina" class="service-img">
+                <h3>Peluquería Con Amor</h3>
+                <p>Baños relajantes, cortes de pelo según su raza, estilo único y el cuidado delicado que su pelaje se merece.</p>
+            </div>
+
+            <!-- Consulta Veterinaria -->
+            <div class="service-card" style="border-top-color: #FFD166;">
+                <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&q=80&w=600" alt="Consulta Veterinaria" class="service-img">
+                <h3>Consulta Veterinaria</h3>
+                <p>Médicos profesionales listos para revisar a tu compañero, con chequeos preventivos y atención cálida.</p>
+            </div>
+
+            <!-- Servicios de Veterinaria Integrales -->
+            <div class="service-card" style="border-top-color: #6C5CE7;">
+                <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&q=80&w=600" alt="Servicios Clínicos" class="service-img">
+                <h3>Servicios de Veterinaria</h3>
+                <p>Procedimientos avanzados, vacunaciones, microchips y exámenes para asegurar su bienestar a largo plazo.</p>
+            </div>
+
+            <!-- Remedios / Farmacia -->
+            <div class="service-card" style="border-top-color: #A8E6CF;">
+                <img src="https://images.unsplash.com/photo-1607619056574-7b8d304f3c6f?auto=format&fit=crop&q=80&w=600" alt="Farmacia Veterinaria" class="service-img">
+                <h3>Farmacia & Remedios</h3>
+                <p>Contamos con un amplio stock de medicamentos certificados, antiparasitarios y suplementos bajo receta médica.</p>
+            </div>
+        </div>
+
+        <!-- Sección de Contacto Rápido -->
+        <section class="contact-section" id="contacto">
+            <div class="contact-grid">
+                
+                <!-- Datos de contacto -->
+                <div class="contact-info">
+                    <h3>¡Visítanos con tu Peludito!</h3>
+                    <p style="margin-bottom: 25px; color: #555;">Estamos ubicados en una zona hermosa de Valdivia, listos para recibirte con una sonrisa y la mejor energía.</p>
+                    
+                    <div class="info-item">
+                        <span class="icon">📍</span>
+                        <div>
+                            <strong>Dirección:</strong><br>
+                            Avenida Los Robles 452, Isla Teja, Valdivia, Chile.
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="icon">📞</span>
+                        <div>
+                            <strong>Teléfono / WhatsApp:</strong><br>
+                            +56 63 224 5566 / +56 9 8765 4321
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="icon">✉️</span>
+                        <div>
+                            <strong>Correo Electrónico:</strong><br>
+                            hola@mundoanimalvaldivia.cl
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="icon">⏰</span>
+                        <div>
+                            <strong>Horarios de Atención:</strong><br>
+                            Lunes a Sábado: 09:00 a 19:30 hrs.<br>
+                            Domingo (Urgencias y Farmacia): 10:00 a 14:00 hrs.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario Rápido -->
+                <div class="contact-form">
+                    <h3>Agenda o Consúltanos en 1 Minuto</h3>
+                    <form action="#" method="POST" onsubmit="event.preventDefault(); alert('¡Mensaje enviado con éxito! Nos comunicaremos contigo muy pronto.');">
+                        <div class="form-group">
+                            <input type="text" placeholder="Tu Nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Tu Correo Electrónico" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Tu Teléfono (ej: +569...)" required>
+                        </div>
+                        <div class="form-group">
+                            <select style="width:100%; padding:12px; border:2px solid #eee; border-radius:10px; font-size:15px; background: white; color: #666;" required>
+                                <option value="" disabled selected>¿Qué servicio necesitas?</option>
+                                <option value="alimentos">Comprar Alimentos / Productos</option>
+                                <option value="peluqueria">Turno de Peluquería</option>
+                                <option value="consulta">Consulta Veterinaria</option>
+                                <option value="remedios">Cotizar Remedios / Recetas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="4" placeholder="Escribe aquí tu consulta o el día y hora que prefieres para tu agendamiento..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-submit">Enviar Mensaje Alegre 🐾</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Mundo Animal Valdivia. Todos los derechos reservados. Hecho con ❤️ para las mascotas de la Región de Los Ríos.</p>
+    </footer>
+
+</body>
+</html>
